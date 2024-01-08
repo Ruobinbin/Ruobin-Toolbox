@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    /* border: none; */
+    -webkit-app-region: drag;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    /* 垂直居中 */
+}
+
+#start {
+    -webkit-app-region: no-drag;
+    display: none;
+}
+
+#skip {
+    -webkit-app-region: no-drag;
+    display: none;
+}
+
+#volume-slider {
+    -webkit-app-region: no-drag;
+}
+
+#mySongList {
+    -webkit-app-region: no-drag;
+    /* position: fixed;
+    right: 0px;
+    top: 0px; */
+}
+
+.noDrag {
+    -webkit-app-region: no-drag;
+}
+
+#lyrics {
+    font-size: 24px;
+    color: #00D95A;
+}
+
+#lyrics2 {
+    font-size: 16px;
+    color: #B2B2B2;
+}
+
+#loginNetease {
+    -webkit-app-region: no-drag;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#qrImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#musicAudio {
+    -webkit-app-region: no-drag;
+}
+
+#nowSong {
+    font-size: large;
+    color: #7D7D7D;
+}
+
+#musicList {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+}
+
+li {
+    font-size: large;
+    color: #7D7D7D;
+}
+
+.whiteShadow {
+    /* 白色描边，四个阴影分别表示上、左、下、右方向 */
+    text-shadow: -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; connect-src *; media-src *">
+  <title>点歌</title>
+  <link rel="stylesheet" type="text/css" href="../css/musicStyle.css">
+  <link rel="stylesheet" type="text/css" href="../css/button.css">
+</head>
+
+<body>
+  <img id="mySongList" src="../images/mySongList_off.png" width="25" height="25">
+
+  <audio id="musicAudio">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div id="lyrics" class="whiteShadow"></div>
+  <div id="lyrics2" class="whiteShadow"></div>
+
+  <input type="range" min="0" max="1" step="0.1" value="0.1" id="volume-slider">
+
+  <div class="whiteShadow">点歌 + 空格 + 歌曲名</div>
+
+  <div>
+    <span id="nowSong" class="whiteShadow">正在播放:</span>
+    <img id="start" src="../images/start_off.png" width="25" height="25">
+    <img id="skip" src="../images/skipSong.png" width="25" height="25" alt="切歌">
+  </div>
+
+  <ul id="musicList" class="whiteShadow">
+  </ul>
+
+  <img id="qrImg" />
+  <!-- <button id="loginNetease" class="action-button animate green">登录网易云</button> -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: transparent;
+  /* border: none;
+  position: relative; */
+  -webkit-app-region: drag;
+  /* 可拖动 */
+}
+
+
+
+.elseMsg {
+  display: block;
+  font-size: large;
+}
+
+.danmuMsg {
+  display: block;
+  font-size: large;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 3px;
+  border-radius: 10px;
+}
+
+.danmuName {
+  text-shadow: -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.touXiangNanImg {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid skyblue;
+}
+
+.touXiangNvImg {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid pink;
+}
+
+.touXiangBaoMiImg {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid purple;
+}
+
+.touXiangErrorImg {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid gray;
+}
+
+li {
+  margin-bottom: 10px;
+  /* background: linear-gradient(to right, white, transparent); */
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  font-size: large;
+  color: black;
+}
+
+.giftLi {
+  background: linear-gradient(to right, skyblue, transparent);
+}
+
+.guardLi {
+  background: linear-gradient(to right, red, transparent);
+}
+
+.superChatLi {
+  background: linear-gradient(to right, yellow, transparent);
+}
+
+.interactLi {
+  background: linear-gradient(to right, green, transparent);
+}
+
+
+#danmu {
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 150px;
+}
+
+
+/* 隐藏垂直滚动条 */
+::-webkit-scrollbar {
+  width: 15px;
+  background-color: transparent;
+}
+
+/* 定义滑块样式 */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: transparent;
+  /* opacity: 0.5; */
+}
+
+/* 鼠标悬停时的滑块样式 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+  opacity: 0.8;
+}
+
+/* 滚动条轨道背景颜色 */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#canvas-container canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#onlineUser {
+  -webkit-app-region: drag;
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0; */
+
+
+}
+
+#onlineUser span {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+#onlineUser img {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+#onlineUserCount {
+  font-size: 10px;
+}

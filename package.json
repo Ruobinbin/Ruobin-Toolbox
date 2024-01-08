@@ -1,0 +1,31 @@
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "0": "electron --version",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package-mac": "electron-builder --mac",
+    "package-win": "electron-builder --win",
+    "package-linux": "electron-builder --linux"
+  },
+  "author": "xbp",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^24.1.2",
+    "electron-builder": "^23.6.0",
+    "typescript": "^5.0.4",
+    "zlib": "^1.0.5"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "electron": "^24.1.2",
+    "md5": "^2.3.0",
+    "mineflayer": "^4.8.1",
+    "node-ipc": "^10.1.0",
+    "pako": "^2.1.0",
+    "zlib": "^1.0.5"
+  }
+}

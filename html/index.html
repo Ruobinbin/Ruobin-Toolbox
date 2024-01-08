@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; connect-src 'self' wss://broadcastlv.chat.bilibili.com:2245/sub;">
+  <title>你好!</title>
+  <link rel="stylesheet" type="text/css" href="../css/indexStyle.css">
+  <link rel="stylesheet" type="text/css" href="../css/button.css">
+</head>
+
+<body>
+  <!--6154037-猪猪--10375360-动漫--4680775-27820329-me 407149-qiqi  21691544 -->
+  <div>
+    <input type="number" id="roomId" class="no-spinners" placeholder="请输入房间号" min="0" step="1" value="27820329">
+  </div>
+
+  <div>
+    <button id="connect" class="action-button animate blue">连接直播间</button>
+    <img id="danmuLock" class="lock" src="../images/suoDing.png" width="25" height="25">
+  </div>
+
+  <div>
+    <button id="openMusic" class="action-button animate red">点歌机</button>
+    <img id="musicLock" class="lock" src="../images/jieSuo.png" width="25" height="25">
+  </div>
+
+  <div>
+    <button id="openLive" class="action-button animate yellow">打开直播间</button>
+  </div>
+
+  <div>
+    <button id="minecraftServerStart" class="action-button animate green">开启miencraft服务器</button>
+  </div>
+
+</body>
+
+</html>
