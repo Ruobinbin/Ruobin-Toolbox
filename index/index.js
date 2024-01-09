@@ -7,7 +7,34 @@ window.addEventListener('DOMContentLoaded', () => {
     const musicLockImg = document.getElementById("musicLock");
     const roomIdInput = document.getElementById("roomId");
     const { ipcRenderer, shell } = require('electron');
-    
+    {
+        // 获取所有侧边栏中的链接元素
+        var links = document.querySelectorAll('.sidebar a');
+
+        // 获取主内容区域中的所有 div 元素
+        var contents = document.querySelectorAll('#main div');
+
+        // 遍历所有的链接元素
+        links.forEach(function (link) {
+            // 为每个链接元素添加点击事件监听器
+            link.addEventListener('click', function (e) {
+                // 阻止链接的默认行为，也就是阻止页面跳转
+                e.preventDefault();
+
+                // 获取被点击的链接元素的 href 属性值，并去掉第一个字符（#）
+                var id = this.getAttribute('href').substring(1);
+
+                // 遍历所有的 div 元素
+                contents.forEach(function (content) {
+                    // 将每个 div 元素的 display 属性设置为 'none'，使得所有的 div 元素都不可见
+                    content.style.display = 'none';
+                });
+
+                // 将 id 对应的 div 元素的 display 属性设置为 'block'，使得该 div 元素可见
+                document.getElementById(id).style.display = 'block';
+            });
+        });
+    }
     connectButton.addEventListener('click', function () {
         const roomId = parseInt(roomIdInput.value);
         ipcRenderer.send('clickConnect', roomId)

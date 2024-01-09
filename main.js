@@ -1,12 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const mineflayer = require('mineflayer');
 const { spawn } = require('child_process');
 
 var danmuWindow
 var mainWindow
 var musicWindow
-var minecraftServerWindow
+var minecraftServerWindow 
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
