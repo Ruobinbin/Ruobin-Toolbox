@@ -3,8 +3,6 @@ const path = require('path')
 const mineflayer = require('mineflayer');
 const { spawn } = require('child_process');
 
-
-
 var danmuWindow
 var mainWindow
 var musicWindow
@@ -17,10 +15,10 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      preload: path.join(__dirname, 'js/index.js')
+      preload: path.join(__dirname, 'index/index.js')
     }
   })
-  mainWindow.loadFile('html/index.html')
+  mainWindow.loadFile('index/index.html')
   // 打开开发工具
   // mainWindow.webContents.openDevTools()
   mainWindow.on('close', () => {
@@ -64,21 +62,15 @@ ipcMain.on('clickConnect', (event, arg) => {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      preload: path.join(__dirname, 'js/danmu.js')
+      preload: path.join(__dirname, 'danmu/danmu.js')
     }
   })
-  danmuWindow.webContents.send("roomId", arg);
+  danmuWindow.webContents.send("roomId", arg);//
   // 打开开发工具
   // danmuWindow.webContents.openDevTools()
   danmuWindow.setIgnoreMouseEvents(true)
   danmuWindow.setPosition(0, 300)
-  danmuWindow.loadFile('html/danmu.html')
-  danmuWindow.on('closed', () => {
-    mainWindow.webContents.send("danmuWindowClose", null);
-  })
-  danmuWindow.on('close', () => {
-    mainWindow.webContents.send("danmuWindowClose", null);
-  })
+  danmuWindow.loadFile('danmu/danmu.html')
 })
 
 ipcMain.on('clickOpenMusic', (event, arg) => {
@@ -94,7 +86,7 @@ ipcMain.on('clickOpenMusic', (event, arg) => {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      preload: path.join(__dirname, 'js/music.js')
+      preload: path.join(__dirname, 'music/music.js')
     }
   })
 
@@ -102,7 +94,7 @@ ipcMain.on('clickOpenMusic', (event, arg) => {
   // musicWindow.webContents.openDevTools()
   // musicWindow.setIgnoreMouseEvents(true)
   musicWindow.setPosition(0, 0)
-  musicWindow.loadFile('html/music.html')
+  musicWindow.loadFile('music/music.html')
 })
 
 ipcMain.on('clickminecraftServerStartButton', (event, arg) => {
@@ -118,18 +110,17 @@ ipcMain.on('clickminecraftServerStartButton', (event, arg) => {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      preload: path.join(__dirname, 'js/minecraftServer.js')
+      preload: path.join(__dirname, 'minecraftServer/minecraftServer.js')
     }
   })
 
   // 打开开发工具
   // minecraftServerWindow.webContents.openDevTools()
   // minecraftServerWindow.setPosition(1915, 0)
-  minecraftServerWindow.loadFile('html/minecraftServer.html')
+  minecraftServerWindow.loadFile('minecraftServer/minecraftServer.html')
 })
 
 ipcMain.on('packet', (event, arg) => {
-  danmuWindow.webContents.send("packet", arg);
   if (minecraftServerWindow && !minecraftServerWindow.isDestroyed()) {
     minecraftServerWindow.webContents.send("packet", arg);
   }
@@ -148,13 +139,10 @@ ipcMain.on('danmuSetIgnoreMouse', (event, arg) => {
     danmuWindow.setAlwaysOnTop(arg)
   }
 })
+
 ipcMain.on('musicSetIgnoreMouse', (event, arg) => {
   if (musicWindow && !musicWindow.isDestroyed()) {
     musicWindow.setIgnoreMouseEvents(arg)
     musicWindow.setAlwaysOnTop(arg)
   }
 })
-
-
-
-
