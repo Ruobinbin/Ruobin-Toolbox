@@ -1,0 +1,9 @@
+version: '3'
+services:
+  aeneas:
+    image: shreshthtuli/aeneas
+    environment:
+      PYTHONIOENCODING: 'UTF-8'
+    volumes:
+      - .:/app
+    command: /bin/bash /app/execute.sh

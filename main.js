@@ -1,11 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
 
 var danmuWindow
 var mainWindow
 var musicWindow
-var minecraftServerWindow 
+var minecraftServerWindow
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -14,7 +14,7 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      preload: path.join(__dirname, 'index/index.js')
+      preload: path.join(__dirname, 'index/main-preload.js')
     }
   })
   mainWindow.loadFile('index/index.html')

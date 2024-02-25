@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com;">
+    content="default-src 'self' https://github.com https://raw.githubusercontent.com https://v2.genshinvoice.top; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com;">
   <title>你好!</title>
   <link rel="stylesheet" type="text/css" href="../index/indexStyle.css">
   <link rel="stylesheet" type="text/css" href="../css/button.css">
@@ -20,7 +20,7 @@
     <a href="#live"><i class="fas fa-comment-dots"></i></a> <!-- 直播弹幕 -->
     <a href="#music"><i class="fas fa-music"></i></a> <!-- 点歌机 -->
     <a href="#minecraft"><i class="fas fa-cube"></i></a> <!-- 我的世界 -->
-    <a href="#contact"><i class="fas fa-envelope"></i></a>
+    <a href="#novel"><i class="fas fa-book"></i></a> <!-- 小说推文 -->
   </div>
 
   <!-- 主内容区域 -->
@@ -41,9 +41,13 @@
       <!-- 我的世界的内容 -->
       <button id="minecraftServerStart" class="action-button animate green">开启miencraft服务器</button>
     </div>
-    <div id="contact" style="display: none;">Contact content...</div>
+    <div id="novel" style="display: none;">
+      <!-- 小说推文的内容 -->
+      <textarea id="novelContentTextarea" placeholder="请输入待转换为语音的小说内容"></textarea>
+      <button id="generateAudioButton" class="action-button animate blue">生成语音</button>
+    </div>
   </div>
-
 </body>
 
+<script type="module" src="../novel/novel.js"></script>
 </html>

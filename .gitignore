@@ -1,1 +1,6 @@
 node_modules
+novel/material/*
+!novel/material/docker-compose-aeneas.yaml
+!novel/material/docker-compose-ffmpeg.yaml
+!novel/material/Dockerfile.ffmpeg
+!novel/material/execute.sh
