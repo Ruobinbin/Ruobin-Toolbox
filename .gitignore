@@ -1,6 +1,12 @@
 node_modules
-novel/material/*
-!novel/material/docker-compose-aeneas.yaml
-!novel/material/docker-compose-ffmpeg.yaml
-!novel/material/Dockerfile.ffmpeg
-!novel/material/execute.sh
+
+novel/output/*
+
+docker_services/*
+!docker_services/*/
+docker_services/*/*
+!docker_services/*/docker-compose.yaml
+!docker_services/*/Dockerfile
+
+!docker_services/vsa/config.yaml
+!docker_services/vsa/nltk_data

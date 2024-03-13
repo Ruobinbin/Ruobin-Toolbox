@@ -1,0 +1,33 @@
+version: '3'
+services:
+  ffmpeg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    volumes:
+      - ../../novel/output:/app
+    command:
+      [
+        "-y",
+        "-f",
+        "concat",
+        "-safe",
+        "0",
+        "-i",
+        "/app/videolist.txt",
+        "-i",
+        "/app/audio.wav",
+        "-map",
+        "0:v",
+        "-map",
+        "1:a",
+        "-c:v",
+        "libx264",
+        "-c:a",
+        "aac",
+        "-vf",
+        "scale=-1:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,subtitles=/app/output.srt:force_style='FontName=Noto Sans CJK SC'",
+        "-shortest",
+        "/app/output.mp4"
+      ]

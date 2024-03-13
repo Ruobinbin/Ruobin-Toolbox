@@ -1,0 +1,10 @@
+version: '3'
+services:
+  aeneas:
+    image: shreshthtuli/aeneas
+    environment:
+      PYTHONIOENCODING: 'UTF-8'
+    volumes:
+      - ../../novel/output:/app
+    # command: /bin/bash /app/execute.sh
+    command: /bin/bash -c "cd ~/Aeneas/aeneas && python -m aeneas.tools.execute_task /app/audio.wav /app/text.txt 'task_language=zho|os_task_file_format=srt|is_text_type=plain' /app/output.srt"

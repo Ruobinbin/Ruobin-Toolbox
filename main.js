@@ -6,6 +6,7 @@ var danmuWindow
 var mainWindow
 var musicWindow
 var minecraftServerWindow
+var novelWindow
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -28,10 +29,7 @@ const createWindow = () => {
     if (musicWindow && !musicWindow.isDestroyed()) {
       musicWindow.close();
     }
-
-
   });
-
 }
 
 app.whenReady().then(() => {
@@ -130,7 +128,23 @@ ipcMain.on('songName', (event, arg) => {
     musicWindow.webContents.send("songName", arg);
   }
 })
-
+//novel
+ipcMain.on('clickOpenNovelButton', (event) => {
+  if (novelWindow && !novelWindow.isDestroyed()) {
+    return
+  }
+  novelWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'novel/novel.js')
+    }
+  })
+  // 打开开发工具
+  novelWindow.webContents.openDevTools()
+  novelWindow.loadFile('novel/novel.html')
+});
 //设置鼠标穿透
 ipcMain.on('danmuSetIgnoreMouse', (event, arg) => {
   if (danmuWindow && !danmuWindow.isDestroyed()) {

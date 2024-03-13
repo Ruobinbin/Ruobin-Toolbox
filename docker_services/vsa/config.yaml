@@ -1,0 +1,129 @@
+abs_path: /app
+http_service:
+  host: 0.0.0.0
+  port: 23456
+  debug: false
+model_config:
+  chinese_roberta_wwm_ext_large: bert/chinese-roberta-wwm-ext-large
+  bert_base_japanese_v3: bert/bert-base-japanese-v3
+  bert_large_japanese_v2: bert/bert-large-japanese-v2
+  deberta_v2_large_japanese: bert/deberta-v2-large-japanese
+  deberta_v3_large: bert/deberta-v3-large
+  deberta_v2_large_japanese_char_wwm: bert/deberta-v2-large-japanese-char-wwm
+  wav2vec2_large_robust_12_ft_emotion_msp_dim: emotional/wav2vec2-large-robust-12-ft-emotion-msp-dim
+  clap_htsat_fused: emotional/clap-htsat-fused
+  erlangshen_MegatronBert_1_3B_Chinese: bert/Erlangshen-MegatronBert-1.3B-Chinese
+  vits_chinese_bert: bert/vits_chinese_bert
+  hubert_soft_0d54a1f4: hubert/hubert_soft/hubert-soft-0d54a1f4.pt
+  dimensional_emotion_npy: emotional/dimensional_emotion_npy
+  dimensional_emotion_model: emotional/dimensional_emotion_model/models.yaml
+  g2pw_model: G2PWModel
+  chinese_hubert_base: hubert/chinese_hubert_base
+tts_config:
+  models_path: models
+  auto_load: true
+  models: []
+admin:
+  id: 0
+  username: '1'
+  password: '1'
+system:
+  device: cuda
+  upload_folder: upload
+  cache_path: cache
+  clean_interval_seconds: 3600
+  cache_audio: false
+  api_key_enabled: false
+  api_key: e3TeleEICUiTV5k30uTHCQlA
+  is_admin_enabled: true
+  admin_route: /admin
+  data_path: data
+log_config:
+  logs_path: logs
+  logs_backupcount: 30
+  logging_level: DEBUG
+language_identification:
+  language_identification_library: langid
+  espeak_library: ''
+  language_automatic_detect: []
+reading_config:
+  interlocutor:
+    model_type: VITS
+    id: 0
+    preset: default
+  narrator:
+    model_type: VITS
+    id: 0
+    preset: default
+vits_config:
+  dynamic_loading: false
+  id: 0
+  format: wav
+  lang: auto
+  length: 1.0
+  noise: 0.33
+  noisew: 0.4
+  segment_size: 50
+  use_streaming: false
+w2v2_vits_config:
+  id: 0
+  format: wav
+  lang: auto
+  length: 1.0
+  noise: 0.33
+  noisew: 0.4
+  segment_size: 50
+  emotion: 0
+hubert_vits_config:
+  id: 0
+  format: wav
+  length: 1.0
+  noise: 0.33
+  noisew: 0.4
+bert_vits2_config:
+  id: 0
+  format: wav
+  lang: auto
+  length: 1.0
+  noise: 0.33
+  noisew: 0.4
+  segment_size: 50
+  sdp_ratio: 0.2
+  emotion: 0
+  text_prompt: Happy
+  style_text: None
+  style_weight: 0.7
+  use_streaming: false
+  torch_data_type: ''
+gpt_sovits_config:
+  hz: 50
+  is_half: false
+  id: 0
+  lang: auto
+  format: wav
+  segment_size: 30
+  top_k: 5
+  top_p: 1.0
+  temperature: 1.0
+  use_streaming: false
+  presets:
+    paimeng:
+      refer_wav_path: gpt_sovits_preset_audio/没什么没什么只是平时他总是站在这里有点奇怪而已.wav
+      prompt_text: 没什么没什么只是平时他总是站在这里有点奇怪而已
+      prompt_lang: auto
+    paimeng_30h:
+      refer_wav_path: gpt_sovits_preset_audio/paimeng_30h/动—好耶！《特尔克西的奇幻历险》出发咯！.wav
+      prompt_text: 动—好耶！《特尔克西的奇幻历险》出发咯！
+      prompt_lang: auto
+    paimeng_30h2:
+      refer_wav_path: gpt_sovits_preset_audio/paimeng_30h/生气—呜哇好生气啊！不要把我跟一斗相提并论！.wav
+      prompt_text: 生气—呜哇好生气啊！不要把我跟一斗相提并论！
+      prompt_lang: auto
+    paimeng_30h3:
+      refer_wav_path: 说话—既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。.wav
+      prompt_text: 说话—既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。
+      prompt_lang: auto
+    paimeng_30h4:
+      refer_wav_path: gpt_sovits_preset_audio/paimeng_30h/疑问—哇，这个，还有这个…只是和史莱姆打了一场，就有这么多结论吗？.wav
+      prompt_text: 疑问—哇，这个，还有这个…只是和史莱姆打了一场，就有这么多结论吗？
+      prompt_lang: auto

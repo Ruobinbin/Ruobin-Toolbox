@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.googleapis.com https://www.youtube.com http://127.0.0.1:23456;">
+    <title>novel</title>
+    <link rel="stylesheet" type="text/css" href="novelStyle.css">
+</head>
+
+<body>
+    <textarea id="novelContentTextarea" placeholder="请输入待转换为语音的小说内容"></textarea>
+    <button id="showVideoButton" class="action-button animate blue">展示视频</button>
+    <button id="startDockerButton" class="action-button animate blue">开启容器</button>
+    <button id="stopDockerButton" class="action-button animate blue">停止容器</button>
+    <input type="text" id="youtubeChannelInput" value="https://www.youtube.com/@HydraulicPressChannel">
+    <input type="number" id="randomVideoCountInput" value="50">
+    <pre id="outputPre"></pre>
+    <div id="videoUrlsDiv"></div>
+    <!-- 开始生成 -->
+    <button id="generateVideoButton" class="action-button animate blue">开始生成</button>
+    <div id="mediaDiv"></div>
+</body>
+
+</html>

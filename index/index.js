@@ -6,13 +6,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const danmuLockImg = document.getElementById("danmuLock");
     const musicLockImg = document.getElementById("musicLock");
     const roomIdInput = document.getElementById("roomId");
+    const openNovelButton = document.getElementById("openNovelButton");
     const { ipcRenderer, shell } = require('electron');
     {
         // 获取所有侧边栏中的链接元素
         var links = document.querySelectorAll('.sidebar a');
 
         // 获取主内容区域中的所有 div 元素
-        var contents = document.querySelectorAll('#main div');
+        var contents = document.querySelectorAll('#main > div');
 
         // 遍历所有的链接元素
         links.forEach(function (link) {
@@ -35,17 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    connectButton.addEventListener('click', function () {
-        const roomId = parseInt(roomIdInput.value);
-        ipcRenderer.send('clickConnect', roomId)
-    });
-    openMusicButton.addEventListener('click', function () {
-        ipcRenderer.send('clickOpenMusic', '点击了点歌机按钮')
-    });
-    openLiveButton.addEventListener('click', function () {
-        const roomId = parseInt(roomIdInput.value);
-        shell.openExternal(`https://live.bilibili.com/${roomId}?broadcast_type=0&is_room_feed=1&spm_id_from=333.999.to_liveroom.0.click&live_from=86002`)
-    });
     danmuLockImg.addEventListener('click', function () {
         if (danmuLockImg.src.includes('suoDing')) {
             danmuLockImg.src = danmuLockImg.src.slice(0, -11) + "jieSuo.png";
@@ -64,7 +54,25 @@ window.addEventListener('DOMContentLoaded', () => {
             ipcRenderer.send('musicSetIgnoreMouse', true)
         }
     });
+    //danmu
+    connectButton.addEventListener('click', function () {
+        const roomId = parseInt(roomIdInput.value);
+        ipcRenderer.send('clickConnect', roomId)
+    });
+    openLiveButton.addEventListener('click', function () {
+        const roomId = parseInt(roomIdInput.value);
+        shell.openExternal(`https://live.bilibili.com/${roomId}?broadcast_type=0&is_room_feed=1&spm_id_from=333.999.to_liveroom.0.click&live_from=86002`)
+    });
+    //music
+    openMusicButton.addEventListener('click', function () {
+        ipcRenderer.send('clickOpenMusic', '点击了点歌机按钮')
+    });
+    //minecraft
     minecraftServerStartButton.addEventListener('click', function () {
         ipcRenderer.send('clickminecraftServerStartButton', '开启服务器')
+    });
+    //novel
+    openNovelButton.addEventListener('click', function () {
+        ipcRenderer.send('clickOpenNovelButton', '点击了点歌机按钮')
     });
 })

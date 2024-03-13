@@ -3,8 +3,19 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https://github.com https://raw.githubusercontent.com https://v2.genshinvoice.top; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 
+        'self' 
+        https://github.com 
+        https://raw.githubusercontent.com 
+        https://v2.genshinvoice.top 
+        https://www.googleapis.com;
+    style-src 
+        'self' 
+        'unsafe-inline' 
+        https://cdnjs.cloudflare.com;
+    font-src 
+        'self' 
+        https://cdnjs.cloudflare.com;">
   <title>你好!</title>
   <link rel="stylesheet" type="text/css" href="../index/indexStyle.css">
   <link rel="stylesheet" type="text/css" href="../css/button.css">
@@ -43,11 +54,9 @@
     </div>
     <div id="novel" style="display: none;">
       <!-- 小说推文的内容 -->
-      <textarea id="novelContentTextarea" placeholder="请输入待转换为语音的小说内容"></textarea>
-      <button id="generateAudioButton" class="action-button animate blue">生成语音</button>
+      <button id="openNovelButton" class="action-button animate red">打开推文界面</button>
     </div>
   </div>
 </body>
 
-<script type="module" src="../novel/novel.js"></script>
 </html>
