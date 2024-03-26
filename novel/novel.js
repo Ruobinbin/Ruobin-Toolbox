@@ -8,10 +8,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     const novelContentTextarea = document.getElementById("novelContentTextarea");
     const showVideoButton = document.getElementById("showVideoButton");
     const generateVideoButton = document.getElementById("generateVideoButton");
+    const generateAudioButton = document.getElementById("generateAudioButton");
     const startDocker = document.getElementById("startDockerButton");
     const stopDocker = document.getElementById("stopDockerButton");
     const outputPre = document.getElementById("outputPre");
-    const mediaDiv = document.getElementById("mediaDiv");
     const videoUrlsDiv = document.getElementById("videoUrlsDiv");
     const youtubeChannelInput = document.getElementById("youtubeChannelInput");
     const randomVideoCountInput = document.getElementById("randomVideoCountInput");
@@ -29,16 +29,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     youtubeChannelInput.addEventListener('input', async function () {
         youtubeChannelUrl = youtubeChannelInput.value;
         videoUrls = await getYoutubeVideoUrlFromUrl(youtubeChannelUrl, randomVideoCount);
-        console.log(videoUrls);
+        showOnOutput('获取视频列表成功：' + videoUrls);
     });
     //改动后更新
     randomVideoCountInput.addEventListener('input', async function () {
         randomVideoCount = randomVideoCountInput.value;
         videoUrls = await getYoutubeVideoUrlFromUrl(youtubeChannelUrl, randomVideoCount);
-        console.log(videoUrls);
+        showOnOutput('获取视频列表成功：' + videoUrls);
     });
-    //展示视频按钮
-    showVideoButton.addEventListener('click', async function () {
+    //生成音频按钮
+    generateAudioButton.addEventListener('click', async function () {
         const novelContent = novelContentTextarea?.value; //获取输入的小说内容
         if (!novelContent) {
             showOnOutput('请输入小说内容');
@@ -47,6 +47,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         await writeToText(novelContent, path.join(mediaPath, 'text.txt')); //写入到txt
         await downAudio(novelContent, path.join(mediaPath, 'audio.wav')); //下载音频
         await controlDocker('aeneas', 'up'); //生成字幕
+    });
+    //展示视频按钮
+    showVideoButton.addEventListener('click', async function () {
         await showRandomVideoList(await getAudioDuration('../' + path.join(mediaPath, 'audio.wav'))); //根据音频长度下载视频数量
     });
     //生成视频按钮
@@ -119,19 +122,28 @@ window.addEventListener('DOMContentLoaded', async () => {
         try {
             const files = await fsPromises.readdir(dir);
             const videoFiles = files.filter(file => file.startsWith('video'));
+            if (videoFiles.length === 0) {
+                showOnOutput('没有视频文件需要删除。');
+                return;
+            }
             const deletePromises = videoFiles.map(file => fsPromises.unlink(path.join(dir, file)));
             await Promise.all(deletePromises);
-            console.log('Video files deleted successfully.');
+            showOnOutput('视频文件删除成功。');
         } catch (error) {
-            console.error('Error deleting video files:', error);
+            showOnOutput('删除视频文件失败:', error);
         }
     }
     //下载音频
     async function downAudio(str, audioPath) {
         try {
             const response = await axios({
-                method: 'get',
-                url: `http://127.0.0.1:23456/voice/gpt-sovits?id=0&preset=paimeng&text=${str}`,
+                method: 'post',
+                url: `http://127.0.0.1:23456/voice/gpt-sovits`,
+                data: {
+                    id: 1,
+                    preset: 'paimeng_30h3',
+                    text: str
+                },
                 responseType: 'arraybuffer' // 修改为 'arraybuffer'
             });
 
@@ -139,9 +151,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             await fsPromises.writeFile(audioPath, buffer); // 写入 Buffer
 
         } catch (error) {
-            console.error(error);
+            showOnOutput('下载音频失败:', error);
             fs.unlink(audioPath, (err) => {
-                if (err) console.error('Error deleting file:', err);
+                if (err) showOnOutput('删除音频失败:', err);
             });
             throw error;
         }
@@ -152,10 +164,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             const fileTxt = path.join(txtPath);
             fs.writeFile(fileTxt, str, (err) => {
                 if (err) {
-                    console.error(`写入到${txtPath}失败:`, err);
+                    showOnOutput(`写入到${txtPath}失败: ${err}`);
                     reject(err);
                 } else {
-                    console.log(`写入到${txtPath}成功`);
+                    showOnOutput(`写入到${txtPath}成功`);
                     resolve();
                 }
             });
@@ -193,7 +205,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     //下载videoList中的视频
     async function downloadVideos(videoList) {
         for (const videoUrl of videoList) {
-            console.log('Downloading video:', videoUrl);
+            showOnOutput('下载视频:' + videoUrl);
             await new Promise((resolve, reject) => {
                 const ytdlpDocker = spawn('docker-compose', ['-f', './docker_services/ytdlp/docker-compose.yaml', 'exec', 'yt-dlp', 'yt-dlp', '--no-playlist', '-f', 'bestvideo[ext=mp4]/best[ext=mp4]', '-o', `/app/video-${Date.now()}.%(ext)s`, videoUrl]);
 
@@ -236,7 +248,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const duration = data.items[0].contentDetails.duration;
             return durationToSeconds(duration);
         } catch (error) {
-            console.error('Failed to fetch video duration:', error);
+            showOnOutput('获取视频时长失败:', error);
         }
     }
     //根据youtube网址获取VideoUrls
@@ -264,10 +276,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const videoUrls = data.items.map(item => `https://www.youtube.com/watch?v=${item.id.videoId}`);
                 return videoUrls;
             } catch (error) {
-                console.error('获取video IDs失败:', error);
+                showOnOutput('获取video IDs失败:', error);
             }
         } else {
-            console.error('获取channel ID失败');
+            showOnOutput('获取channel ID失败');
         }
     }
     //ISO 8601 转 秒
@@ -279,35 +291,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         const seconds = (parseInt(match[3]) || 0);
 
         return hours * 3600 + minutes * 60 + seconds;
-    }
-    // 加载媒体文件
-    function loadMediaFiles() {
-        mediaDiv.innerHTML = '';
-        fs.readdir(mediaPath, (err, files) => {
-            if (err) {
-                console.error('Error reading directory:', err);
-                return;
-            }
-            files.forEach(file => {
-                const filePath = path.join(mediaPath, file);
-                if (file === 'audio.wav') {
-                    let audio = document.createElement('audio');
-                    audio.src = '../' + filePath;
-                    audio.controls = true;
-                    mediaDiv.appendChild(audio);
-                } else if (file.startsWith('video-')) {
-                    let video = document.createElement('video');
-                    video.src = '../' + filePath;
-                    video.controls = true;
-                    mediaDiv.appendChild(video);
-                } else if (file === 'output.mp4') {
-                    let video = document.createElement('video');
-                    video.src = '../' + filePath;
-                    video.controls = true;
-                    mediaDiv.appendChild(video);
-                }
-            });
-        });
     }
     // 获取mediaPath下的video-开头的文件并生成videolist.txt
     async function generateVideoList(mediaPath) {

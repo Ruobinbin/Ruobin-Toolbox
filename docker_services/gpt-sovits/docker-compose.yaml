@@ -1,0 +1,23 @@
+version: '3'
+services:
+  gpt-sovits:
+    image: breakstring/gpt-sovits:latest
+    ports:
+      - "9880:9880"
+    volumes:
+      - ./model:/model
+    command: >
+      python api.py 
+      -dr "/model/paimeng/参考音频/说话—既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。.wav" 
+      -dt "名既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。" 
+      -dl "zh" 
+      -d "cuda" 
+      -s /model/paimeng/paimeng2_e110_s159940.pth
+      -g /model/paimeng/paimeng2-e100.ckpt
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]

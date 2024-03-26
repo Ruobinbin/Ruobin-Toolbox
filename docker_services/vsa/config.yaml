@@ -34,7 +34,7 @@ system:
   clean_interval_seconds: 3600
   cache_audio: false
   api_key_enabled: false
-  api_key: e3TeleEICUiTV5k30uTHCQlA
+  api_key: RweS7GhVdlr8z5uRfepCw4Dz
   is_admin_enabled: true
   admin_route: /admin
   data_path: data
@@ -117,13 +117,21 @@ gpt_sovits_config:
       prompt_lang: auto
     paimeng_30h2:
       refer_wav_path: gpt_sovits_preset_audio/paimeng_30h/生气—呜哇好生气啊！不要把我跟一斗相提并论！.wav
-      prompt_text: 生气—呜哇好生气啊！不要把我跟一斗相提并论！
+      prompt_text: 呜哇好生气啊！不要把我跟一斗相提并论！
       prompt_lang: auto
     paimeng_30h3:
-      refer_wav_path: 说话—既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。.wav
-      prompt_text: 说话—既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。
+      refer_wav_path: gpt_sovits_preset_audio/paimeng_30h/说话—既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。.wav
+      prompt_text: 既然罗莎莉亚说足迹上有元素力，用元素视野应该能很清楚地看到吧。
       prompt_lang: auto
     paimeng_30h4:
       refer_wav_path: gpt_sovits_preset_audio/paimeng_30h/疑问—哇，这个，还有这个…只是和史莱姆打了一场，就有这么多结论吗？.wav
-      prompt_text: 疑问—哇，这个，还有这个…只是和史莱姆打了一场，就有这么多结论吗？
+      prompt_text: 哇，这个，还有这个…只是和史莱姆打了一场，就有这么多结论吗？
+      prompt_lang: auto
+    syq:
+      refer_wav_path: models/37/参考音频/说话-名字是我自己取的，大家也叫我三月、小三月…你呢？你想叫我什么？.wav
+      prompt_text: 名字是我自己取的，大家也叫我三月、小三月…你呢？你想叫我什么？
+      prompt_lang: auto
+    kll:
+      refer_wav_path: models/kll/参考音频/说话-娜塔莎姐姐说克拉拉也是医生呢，是机器伙伴的医生。.wav
+      prompt_text: 娜塔莎姐姐说克拉拉也是医生呢，是机器伙伴的医生。
       prompt_lang: auto

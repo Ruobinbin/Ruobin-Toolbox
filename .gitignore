@@ -10,3 +10,6 @@ docker_services/*/*
 
 !docker_services/vsa/config.yaml
 !docker_services/vsa/nltk_data
+!docker_services/vsa/config.txt
+!docker_services/vsa/phrases_dict.txt
+

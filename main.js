@@ -64,7 +64,7 @@ ipcMain.on('clickConnect', (event, arg) => {
   })
   danmuWindow.webContents.send("roomId", arg);//
   // 打开开发工具
-  // danmuWindow.webContents.openDevTools()
+  danmuWindow.webContents.openDevTools()
   danmuWindow.setIgnoreMouseEvents(true)
   danmuWindow.setPosition(0, 300)
   danmuWindow.loadFile('danmu/danmu.html')

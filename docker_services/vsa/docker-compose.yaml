@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   vits:
-    image: artrajz/vits-simple-api:latest-gpu
+    image: artrajz/vits-simple-api:v0.6.10-gpu
     # restart: always
     ports:
       - 23456:23456
